@@ -6,7 +6,7 @@ import UserList from '@/components/user/List'
 import UserImages from '@/components/user/Images'
 
 import Login from '@/components/Login'
-// import AuthGuard from './auth-guard'
+import AuthGuard from './auth-guard'
 
 Vue.use(Router)
 
@@ -40,6 +40,6 @@ const router = new Router({
     }
   ]
 })
-// router.beforeEach(AuthGuard)
+router.beforeEach(AuthGuard)
 
 export default router

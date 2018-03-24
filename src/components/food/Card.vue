@@ -1,7 +1,7 @@
 <template lang="pug">
 v-flex(:key="food.name" lg3 md4 sm6 xs12 style="position: relative")
   v-card(@mouseover="hovered = true; fixPosition();" @mouseleave="hovered = false")
-    v-card-media(:src="food.images[0] ? `http://localhost:3000/public/images/${food.images[0]}` : require('@/assets/logo.png')" alt="Vuetify.js" height="200px")
+    v-card-media(:src="food.images[0] ? `https://api.lento.in/public/images/${food.images[0]}` : require('@/assets/logo.png')" alt="Vuetify.js" height="200px")
       my-chip(v-if="!food.time") 시간 X
       my-chip(v-if="!food.lat") 위치 X
     v-card-title(primary-title)

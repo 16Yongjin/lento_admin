@@ -13,7 +13,7 @@ v-container.h100
                 v-flex(xs12)
                   v-text-field(label="아이디" v-model="username" required)
                 v-flex(xs12)
-                  v-text-field(label="비밀번호" v-model="password" type="password" required)
+                  v-text-field(@keyup.enter="login" label="비밀번호" v-model="password" type="password" required)
                 v-flex
                   v-btn(@click="login" block color="grey" :disabled="hasBlank") 로그인
 

@@ -1,7 +1,7 @@
 <template lang="pug">
   v-flex(lg3 md4 sm6 xs12)
     v-card
-      v-card-media(height="200px" :src="`http://localhost:3000/public/images/${image.image}`" :key="image.image")
+      v-card-media(height="200px" :src="`https://api.lento.in/public/images/${image.image}`" :key="image.image")
       v-card-title.title {{ image.name }}
       v-card-actions
         v-spacer

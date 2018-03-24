@@ -26,11 +26,13 @@ v-dialog(v-model="dialog" max-width="500px")
             v-text-field(label="경도" v-model="tmp.lng" type="number")
           v-flex(xs12)
             v-text-field(label="메뉴" v-model="tmp.menu" multi-line rows="3" hint="',' 로 메뉴를 구분합니다.")
+          v-flex(xs12)
+            v-text-field(label="외밥최선생" v-model="tmp.sensei")
           v-layout(v-if="food.images && food.images[0]" row style="overflow-x: auto")
             v-flex.relative.ma-1(v-for="image in food.images" :key="image")
               v-btn(icon absolute left color="white"  @click="deleteImage(image)") 
                 v-icon close
-              img.h150(:src="`http://localhost:3000/public/images/${image}`" style="height: 150px")
+              img.h150(:src="`https://api.lento.in/public/images/${image}`" style="height: 150px")
 
     v-card-actions
       v-btn(icon @click="onPickFile" :disabled="loading")
@@ -67,8 +69,8 @@ export default {
   },
   watch: {
     food () {
-      const { name, type, time, menu, lat, lng } = this.food
-      this.tmp = { name, type, time, menu, lat, lng }
+      const { name, type, time, menu, lat, lng, sensei } = this.food
+      this.tmp = { name, type, time, menu, lat, lng, sensei }
     }
   },
   methods: {

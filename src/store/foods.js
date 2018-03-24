@@ -60,7 +60,7 @@ export default {
         return commit('setEditDialog', false)
       }
       const editFood = getters.editFood
-      const keys = ['name', 'type', 'time', 'menu', 'lat', 'lng']
+      const keys = ['name', 'type', 'time', 'menu', 'lat', 'lng', 'sensei']
       const data = keys.reduce((acc, key) =>
         editFood[key] !== food[key] ? Object.assign(acc, { [key]: food[key] }) : acc
       , {})
@@ -92,7 +92,7 @@ export default {
         return alert('정확한 위도 / 경도를 입력해주세요')
       }
 
-      axios.post('/', { data })
+      axios.post('/foods', { data })
         .then(({ data }) => {
           commit('setAddDialog', false)
           commit('addFood', data)

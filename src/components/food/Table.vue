@@ -1,12 +1,10 @@
 <template lang="pug">
-v-container
-  v-layout(row wrap)
     v-card
       v-card-title
         | Food Table
         v-spacer
         v-text-field(append-icon="search" label="Search" single-line hide-details v-model="search")
-      v-data-table.elevation-1(:headers="headers" :items="foods" :search="search" :rows-per-page-items="[25, 50]" item-key="_id")
+      v-data-table.elevation-1(:headers="headers" :items="foods" :search="search" :rows-per-page-items="[50, 100]" item-key="_id")
         template(slot="items" slot-scope="props")
           td 
             v-edit-dialog(@open="tmp = props.item.name" @save="save(props.item._id, 'name', tmp)" large lazy)
@@ -28,6 +26,12 @@ v-container
               div {{ props.item.menu && props.item.menu.length < 100 ? props.item.menu : props.item.menu.slice(0, 100) + '...' }}
               .mt-3.title(slot="input") Update menu
               v-text-field(slot="input" v-model="tmp" multi-line rows="3" autofocus)
+          td
+            v-edit-dialog(@open="tmp = props.item.sensei" @save="save(props.item._id, 'sensei', tmp)" large lazy)
+              div {{ props.item.sensei ? 'O' : '-' }}
+              .mt-3.title(slot="input") 외밥최선생 출처
+              v-text-field(slot="input" v-model="tmp" autofocus)
+
           td(@click="props.expanded = !props.expanded") 
             v-icon {{ props.item.images[0] ? 'image' : 'add_a_photo' }}
 
@@ -41,7 +45,7 @@ v-container
               .relative.ma-1(v-for="image in props.item.images" :key="image" )
                 v-btn(icon absolute right @click="deleteImage(props.item._id, image)")
                   v-icon close
-                img.h150(:src="`http://localhost:3000/public/images/${image}`" style="height: 192px;")
+                img.h150(:src="`https://api.lento.in/public/images/${image}`" style="height: 192px;")
 
 </template>
 
@@ -54,6 +58,7 @@ export default {
         { text: '종류', value: 'type', align: 'left' },
         { text: '시간', value: 'time', align: 'left', sortable: false },
         { text: '메뉴', value: 'menu', align: 'left', sortable: false },
+        { text: '외밥', value: 'sensei', align: 'left', sortable: false },
         { text: '사진', align: 'left', sortable: false }
       ],
       search: '',
@@ -62,7 +67,7 @@ export default {
   },
   computed: {
     foods () {
-      return this.$store.getters.foods.slice(0, 20)
+      return this.$store.getters.foods
     }
   },
   methods: {
