@@ -60,7 +60,7 @@ export default {
         return commit('setEditDialog', false)
       }
       const editFood = getters.editFood
-      const keys = ['name', 'type', 'time', 'menu', 'lat', 'lng', 'sensei']
+      const keys = ['name', 'type', 'time', 'menu', 'lat', 'lng', 'sensei', 'honbab', 'honmono']
       const data = keys.reduce((acc, key) =>
         editFood[key] !== food[key] ? Object.assign(acc, { [key]: food[key] }) : acc
       , {})

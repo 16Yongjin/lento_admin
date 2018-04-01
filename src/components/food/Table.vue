@@ -31,6 +31,12 @@
               div {{ props.item.sensei ? 'O' : '-' }}
               .mt-3.title(slot="input") 외밥최선생 출처
               v-text-field(slot="input" v-model="tmp" autofocus)
+          td
+            v-edit-dialog(@open="tmp = props.item.honbab" @save="save(props.item._id, 'honbab', tmp)" large lazy)
+              div {{ props.item.honbab || '-' }}
+              .mt-3.title(slot="input") 혼밥지수
+              v-text-field(slot="input" v-model="tmp" autofocus)
+
 
           td(@click="props.expanded = !props.expanded") 
             v-icon {{ props.item.images[0] ? 'image' : 'add_a_photo' }}
@@ -59,6 +65,7 @@ export default {
         { text: '시간', value: 'time', align: 'left', sortable: false },
         { text: '메뉴', value: 'menu', align: 'left', sortable: false },
         { text: '외밥', value: 'sensei', align: 'left', sortable: false },
+        { text: '혼밥', value: 'honbab', align: 'left', sortable: false },
         { text: '사진', align: 'left', sortable: false }
       ],
       search: '',

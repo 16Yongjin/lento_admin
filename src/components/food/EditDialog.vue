@@ -28,6 +28,10 @@ v-dialog(v-model="dialog" max-width="500px")
             v-text-field(label="메뉴" v-model="tmp.menu" multi-line rows="3" hint="',' 로 메뉴를 구분합니다.")
           v-flex(xs12)
             v-text-field(label="외밥최선생" v-model="tmp.sensei")
+          v-flex(xs12 sm4)
+            v-text-field(label="혼밥지수" v-model="tmp.honbab" type="number" :rules="[honbabIndex]")
+          v-flex(xs12 sm8)
+            v-text-field(label="혼밥비급" v-model="tmp.honmono")
           v-layout(v-if="food.images && food.images[0]" row style="overflow-x: auto")
             v-flex.relative.ma-1(v-for="image in food.images" :key="image")
               v-btn(icon absolute left color="white"  @click="deleteImage(image)") 
@@ -69,8 +73,8 @@ export default {
   },
   watch: {
     food () {
-      const { name, type, time, menu, lat, lng, sensei } = this.food
-      this.tmp = { name, type, time, menu, lat, lng, sensei }
+      const { name, type, time, menu, lat, lng, sensei, honbab, honmono } = this.food
+      this.tmp = { name, type, time, menu, lat, lng, sensei, honbab, honmono }
     }
   },
   methods: {
@@ -95,6 +99,9 @@ export default {
       if (!confirm('이미지를 삭제할까요?')) return
       const id = this.food._id
       this.$store.dispatch('deleteImage', { image, id })
+    },
+    honbabIndex (value) {
+      return !value || (value >= 0 && value <= 5) || '0 ~ 5 사이로 입력하세요.'
     }
   }
 }

@@ -18,6 +18,10 @@ v-dialog(v-model="dialog" max-width="500px")
             v-text-field(label="경도" v-model="tmp.lng" type="number")
           v-flex(xs12)
             v-text-field(label="메뉴" v-model="tmp.menu" multi-line rows="3" hint="',' 로 메뉴를 구분합니다.")
+          v-flex(xs12 sm4)
+            v-text-field(label="혼밥지수" v-model="tmp.honbob" type="number")
+          v-flex(xs12 sm8)
+            v-text-field(label="혼밥비급" v-model="tmp.honmono")
 
     v-card-actions
       v-spacer
