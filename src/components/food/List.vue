@@ -35,6 +35,11 @@ export default {
     openAddDialog () {
       this.$store.dispatch('openAddDialog')
     }
+  },
+  created () {
+    if (!this.foods.length) {
+      this.$store.dispatch('loadFoods')
+    }
   }
 }
 </script>

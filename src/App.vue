@@ -28,10 +28,9 @@ v-app
       v-icon {{ miniVariant ? 'chevron_right' : 'chevron_left' }}
     v-toolbar-title(v-text="title")
     v-spacer
-    v-toolbar-side-icon.hidden-md-and-up
     v-toolbar-items.hidden-sm-and-down
     div(v-if="auth")
-      v-btn(@click="loadFoods" flat)
+      v-btn(@click="refresh" flat)
         v-icon refresh  
       v-btn(@click="logout" flat) 로그아웃
     v-btn(v-else flat to="login") 로그인
@@ -49,7 +48,7 @@ export default {
         {
           action: 'dashboard',
           title: 'Dashboard',
-          to: 'dashboard'
+          to: '/'
         }, {
           action: 'restaurant',
           title: 'Foods',
@@ -88,8 +87,15 @@ export default {
       this.$store.dispatch('logout')
       this.$router.push('/login')
     },
-    loadFoods () {
-      this.$store.dispatch('refresh')
+    refresh () {
+      const route = this.$route.name
+      if (route === 'Dashboard') {
+        this.$store.dispatch('loadLogs')
+      } else if (route.startsWith('Food')) {
+        this.$store.dispatch('loadFoods')
+      } else if (route.startsWith('User')) {
+        this.$store.dispatch('loadUserImages')
+      }
     }
   }
 }

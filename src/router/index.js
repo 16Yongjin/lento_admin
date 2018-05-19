@@ -4,6 +4,7 @@ import FoodList from '@/components/food/List'
 import FoodTable from '@/components/food/Table'
 import UserList from '@/components/user/List'
 import UserImages from '@/components/user/Images'
+import Dashboard from '@/components/dashboard/Index'
 
 import Login from '@/components/Login'
 import AuthGuard from './auth-guard'
@@ -37,6 +38,11 @@ const router = new Router({
       path: '/users/images',
       name: 'UserImages',
       component: UserImages
+    },
+    {
+      path: '/',
+      name: 'Dashboard',
+      component: Dashboard
     }
   ]
 })

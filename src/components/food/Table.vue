@@ -95,6 +95,11 @@ export default {
       const id = this.tmp
       this.$store.dispatch('saveImages', { files, id })
     }
+  },
+  created () {
+    if (!this.foods.length) {
+      this.$store.dispatch('loadFoods')
+    }
   }
 }
 </script>

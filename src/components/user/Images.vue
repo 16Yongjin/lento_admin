@@ -19,7 +19,9 @@ export default {
     }
   },
   created () {
-    console.log(this.userImages)
+    if (!this.userImages.length) {
+      this.$store.dispatch('loadUserImages')
+    }
   }
 }
 </script>

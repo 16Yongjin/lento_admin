@@ -45,12 +45,13 @@ export default {
     login () {
       const { username, password, go, to, hasBlank } = this
       if (hasBlank) return
-
       this.$store.dispatch('login', { username, password, go: () => go(to) })
     }
   },
-  created () {
-    if (this.$store.getters.login) {
+  mounted () {
+    if (localStorage.getItem('auth')) {
+      const { go, to } = this
+      this.$store.dispatch('login', { go: () => go(to) })
       this.go()
     }
   }

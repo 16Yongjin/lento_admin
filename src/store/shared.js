@@ -8,6 +8,7 @@ export default {
   },
   mutations: {
     setAuth (state, payload) {
+      localStorage.setItem('auth', payload)
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + payload
       state.auth = payload
     },
@@ -20,6 +21,11 @@ export default {
   },
   actions: {
     login ({ commit, dispatch }, { username, password, go }) {
+      if (localStorage.getItem('auth')) {
+        commit('setAuth', localStorage.getItem('auth'))
+        commit('setError', null)
+        return
+      }
       return axios.post(`/auth/login`, { username, password })
         .then(res => {
           commit('setAuth', res.data.token)
