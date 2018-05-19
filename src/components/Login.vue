@@ -48,7 +48,7 @@ export default {
     }
   },
   created () {
-    const localAuth = JSON.parse(localStorage.getItem('auth'))
+    const localAuth = localStorage.getItem('auth')
     if (localAuth) {
       const { go, to } = this
       this.$store.dispatch('login', { localAuth, go: () => go(to) })

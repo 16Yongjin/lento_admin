@@ -45,7 +45,7 @@ export default {
     logout ({ commit }) {
       commit('clearFoods')
       commit('clearUserImages')
-      commit('setAuth', null)
+      commit('setAuth', '')
     },
     loadingOn ({ commit }) { commit('setLoading', true) },
     loadingOff ({ commit }) { commit('setLoading', false) },
