@@ -39,7 +39,6 @@ export default {
   },
   methods: {
     go (to) {
-      console.log(to)
       this.$router.push(to || '/')
     },
     login () {
@@ -48,11 +47,11 @@ export default {
       this.$store.dispatch('login', { username, password, go: () => go(to) })
     }
   },
-  mounted () {
-    if (localStorage.getItem('auth')) {
+  created () {
+    const localAuth = JSON.parse(localStorage.getItem('auth'))
+    if (localAuth) {
       const { go, to } = this
-      this.$store.dispatch('login', { go: () => go(to) })
-      this.go()
+      this.$store.dispatch('login', { localAuth, go: () => go(to) })
     }
   }
 }

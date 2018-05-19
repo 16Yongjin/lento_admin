@@ -20,9 +20,10 @@ export default {
     }
   },
   actions: {
-    login ({ commit, dispatch }, { username, password, go }) {
-      if (localStorage.getItem('auth')) {
-        commit('setAuth', localStorage.getItem('auth'))
+    login ({ commit, dispatch }, { username, password, go, localAuth }) {
+      if (localAuth) {
+        console.log('auth', typeof localAuth)
+        commit('setAuth', localAuth)
         commit('setError', null)
         return
       }
