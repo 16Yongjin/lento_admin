@@ -51,7 +51,7 @@
               .relative.ma-1(v-for="image in props.item.images" :key="image" )
                 v-btn(icon absolute right @click="deleteImage(props.item._id, image)")
                   v-icon close
-                img.h150(:src="`https://api.lento.in/public/images/${image}`" style="height: 192px;")
+                img.h150(:src="`https://api.food.hufs.app/public/images/${image}`" style="height: 192px;")
 
 </template>
 

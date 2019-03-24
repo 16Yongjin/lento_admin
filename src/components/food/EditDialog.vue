@@ -36,7 +36,7 @@ v-dialog(v-model="dialog" max-width="500px")
             v-flex.relative.ma-1(v-for="image in food.images" :key="image")
               v-btn(icon absolute left color="white"  @click="deleteImage(image)") 
                 v-icon close
-              img.h150(:src="`https://api.lento.in/public/images/${image}`" style="height: 150px")
+              img.h150(:src="`https://api.food.hufs.app/public/images/${image}`" style="height: 150px")
 
     v-card-actions
       v-btn(icon @click="onPickFile" :disabled="loading")
